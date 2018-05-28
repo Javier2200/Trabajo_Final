@@ -69,6 +69,11 @@ public class EstadoFrm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(modeloTabla2);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
@@ -230,6 +235,12 @@ public class EstadoFrm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Los Datos No Se Insertaron");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int seleccion = jTable1.rowAtPoint(evt.getPoint());
+        txtId.setText(String.valueOf(jTable1.getValueAt(seleccion, 0)));
+        txtNombre.setText(String.valueOf(jTable1.getValueAt(seleccion, 1)));
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

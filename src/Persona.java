@@ -160,7 +160,7 @@ public class Persona extends PersonaAPP.PersonaPOA{
         ResultSet resultado = null;
         
         try {
-            String query = "Select identificacion, nombre, apellido from persona";
+            String query = "Select identificacion, nombre, apellido, edad from persona";
             conex.conexion();
             Statement st = conex.conex.createStatement();
             resultado = st.executeQuery(query);

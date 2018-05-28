@@ -47,7 +47,7 @@ public class PersonaFrm extends javax.swing.JFrame {
      */
     
     private String[] getColum(){
-        String columnas[] = new String[]{"identificacion","nombre","apellido"};
+        String columnas[] = new String[]{"identificacion","nombre","apellido","edad"};
         return columnas;
     }
     
@@ -58,9 +58,9 @@ public class PersonaFrm extends javax.swing.JFrame {
         ResultSet Resultado = objPersona.cargarTablaPersona();
         
         try {
-            Object dato [] = new Object[3];
+            Object dato [] = new Object[4];
             while (Resultado.next()) {
-                for (int i=0; i<3; i++) {
+                for (int i=0; i<4; i++) {
                     dato[i] = Resultado.getObject(i+1);
                 }
                 modeloTabla.addRow(dato);
@@ -76,7 +76,7 @@ public class PersonaFrm extends javax.swing.JFrame {
 
         lblPersona = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable3 = new javax.swing.JTable();
         lblIdentificacion = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblApellido = new javax.swing.JLabel();
@@ -100,8 +100,13 @@ public class PersonaFrm extends javax.swing.JFrame {
         lblPersona.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         lblPersona.setText("PERSONAS");
 
-        jTable1.setModel(modeloTabla);
-        jScrollPane1.setViewportView(jTable1);
+        jTable3.setModel(modeloTabla);
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable3);
 
         lblIdentificacion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblIdentificacion.setText("Identificacion");
@@ -185,9 +190,8 @@ public class PersonaFrm extends javax.swing.JFrame {
                                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtEdad)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(cboEstado, javax.swing.GroupLayout.Alignment.LEADING, 0, 126, Short.MAX_VALUE)
-                                            .addComponent(cboGenero, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(cboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cboGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGap(18, 18, 18))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -320,6 +324,14 @@ public class PersonaFrm extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        int seleccion = jTable3.rowAtPoint(evt.getPoint());
+        txtIdentificacion.setText(String.valueOf(jTable3.getValueAt(seleccion, 0)));
+        txtNombre.setText(String.valueOf(jTable3.getValueAt(seleccion, 1)));
+        txtApellido.setText(String.valueOf(jTable3.getValueAt(seleccion, 2)));
+        txtEdad.setText(String.valueOf(jTable3.getValueAt(seleccion, 3)));
+    }//GEN-LAST:event_jTable3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -364,7 +376,7 @@ public class PersonaFrm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JComboBox<String> cboGenero;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable3;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblEstado;

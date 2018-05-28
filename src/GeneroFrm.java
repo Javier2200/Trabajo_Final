@@ -87,6 +87,11 @@ public class GeneroFrm extends javax.swing.JFrame {
         lblGenero.setText("GENERO");
 
         jTable2.setModel(modeloTabla3);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         lblId.setText("Id");
@@ -242,6 +247,12 @@ public class GeneroFrm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Los Datos No Se Insertaron");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        int seleccion = jTable2.rowAtPoint(evt.getPoint());
+        txtId.setText(String.valueOf(jTable2.getValueAt(seleccion, 0)));
+        txtNombre.setText(String.valueOf(jTable2.getValueAt(seleccion, 1)));
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
