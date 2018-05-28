@@ -1,0 +1,10 @@
+module GeneroAPP{
+    interface Genero{
+        boolean insertarGenero(in long id, in wstring nombre);
+        wstring consultarGenero (in long id);
+        boolean eliminarGenero (in long id);
+        boolean actualizarGenero (in long id, in wstring nombre);
+        wstring listarGenero();
+        oneway void shutdown();
+    };
+};
